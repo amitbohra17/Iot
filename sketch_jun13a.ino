@@ -6,7 +6,7 @@ const char* ssid = "Remdi 13 5g";              // Replace with your Wi-Fi name
 const char* password = "not@v@il@ble";         // Replace with your Wi-Fi password
 
 // API endpoint (make sure to use /predict)
-const char* serverName = "https://iot-1-zdty.onrender.com/predict";
+const char* serverName = "https://iot-proj-zgwa.onrender.com/predict";
 
 // Hardware pins
 const int moisturePin = 34;  // Analog pin connected to moisture sensor
