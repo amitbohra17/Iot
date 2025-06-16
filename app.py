@@ -28,14 +28,21 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
+    print("Received data:", data)
+
     if "moisture" not in data:
+        print("Missing moisture key")
         return jsonify({"error": "Missing 'moisture' field"}), 400
 
-    moisture = data["moisture"]
-    df = pd.DataFrame([{"moisture": moisture}])
-    prediction = int(model.predict(df)[0])
+    try:
+        moisture = data["moisture"]
+        df = pd.DataFrame([{"moisture": moisture}])
+        prediction = int(model.predict(df)[0])
+        print("Prediction:", prediction)
+    except Exception as e:
+        print("Error during prediction:", e)
+        return jsonify({"error": str(e)}), 500
 
-    # Store the prediction and value
     log_data.append({
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "moisture": moisture,
